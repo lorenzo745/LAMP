@@ -4,7 +4,6 @@
     <title>Esercitazione c</title>
 </head>
 <body>
-
 <?php
 // Pattern (a)
 echo "(a)<br>";
@@ -14,7 +13,6 @@ for ($i = 1; $i <= 8; $i++) {
     }
     echo "<br>";
 }
-
 // Pattern (b)
 echo "<br>(b)<br>";
 for ($i = 8; $i >= 1; $i--) {
@@ -23,7 +21,6 @@ for ($i = 8; $i >= 1; $i--) {
     }
     echo "<br>";
 }
-
 // Pattern (c)
 echo "<br>(c)<br>";
 for ($i = 8; $i >= 1; $i--) {
@@ -37,7 +34,6 @@ for ($i = 8; $i >= 1; $i--) {
     }
     echo "<br>";
 }
-
 // Pattern (d)
 echo "<br>(d)<br>";
 for ($i = 1; $i <= 8; $i++) {
@@ -52,6 +48,5 @@ for ($i = 1; $i <= 8; $i++) {
     echo "<br>";
 }
 ?>
-
 </body>
 </html>
