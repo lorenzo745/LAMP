@@ -1,49 +1,113 @@
-<DOCTYPE html>
-    <head>
-    <h4> esercizio form </h4>
-    </head>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Raccolta dati dal form
+    $nome = filter_input(INPUT_POST, 'nome');
+    $cognome = filter_input(INPUT_POST, 'cognome');
+    $data_nascita = $_POST['data_nascita'];
+    $codice_fiscale = filter_input(INPUT_POST, 'codice_fiscale');
+    $email = filter_input(INPUT_POST, 'email');
+    $cellulare = filter_input(INPUT_POST, 'cellulare');
+    $indirizzo = filter_input(INPUT_POST, 'indirizzo');
+    $nickname = filter_input(INPUT_POST, 'nickname');
+    $password = $_POST['password'];
+
+    // Validazione aggiuntiva nickname
+    if ($nickname === $nome || $nickname === $cognome) {
+        echo "Il nickname non può essere uguale al nome o al cognome.";
+        exit;
+    }
+
+    // Validazione password
+    if (!preg_match("/(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}/", $password)) {
+        echo "La password deve contenere almeno una maiuscola, un numero e un carattere speciale.";
+        exit;
+    }
+
+    // Controllo e memorizzazione dati
+    echo "Dati ricevuti:<br>";
+    echo "Nome: $nome<br>";
+    echo "Cognome: $cognome<br>";
+    echo "Data di nascita: $data_nascita<br>";
+    echo "Codice Fiscale: $codice_fiscale<br>";
+    echo "Email: $email<br>";
+    echo "Cellulare: $cellulare<br>";
+    echo "Indirizzo: $indirizzo<br>";
+    echo "Nickname: $nickname<br>";
+}
+?>
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validazione</title>
+</head>
 <body>
-    <form action="esercizio_form.php" method="post">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required><br>
+    <h2>Form di Registrazione Utente</h2>
+    <form action="validazione.php" method="POST">
+        <!-- Nome -->
+        <label for="nome">Nome*:</label>
+        <input type="text" id="nome" name="nome" pattern="[A-Za-zÀ-ÿ\s]+" required>
+        <br><br>
 
-        <label for="cognome">Cognome:</label>
-        <input type="text" id="cognome" name="cognome" required><br>
+        <!-- Cognome -->
+        <label for="cognome">Cognome*:</label>
+        <input type="text" id="cognome" name="cognome" pattern="[A-Za-zÀ-ÿ\s']+" required>
+        <br><br>
 
-        <label for="data_nascita">Data di Nascita:</label>
-        <input type="text" id="data_nascita" name="data" required><br>
+        <!-- Data di nascita -->
+        <label for="data_nascita">Data di Nascita*:</label>
+        <input type="date" id="data_nascita" name="data_nascita" required>
+        <br><br>
 
-        <label for="codice_fiscale">Codice:</label>
-        <input type="text" id="codice_fiscale" name="codice"><br>
+        <!-- Codice Fiscale -->
+        <label for="codice_fiscale">Codice Fiscale:</label>
+        <input type="text" id="codice_fiscale" name="codice_fiscale">
+        <br><br>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br>
+        <!-- Email -->
+        <label for="email">Email*:</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
 
-        <label for="tel">Tel:</label>
-        <input type="tel" id="tel" name="tel"><br>
+        <!-- Cellulare -->
+        <label for="cellulare">Cellulare (12 cifre):</label>
+        <input type="tel" id="cellulare" name="cellulare" pattern="[0-9]{12}">
+        <br><br>
 
-        <label type="via">Via:</label>
-        <input type="text" id="via" name="via" require><br>
+        <!-- Via -->
+        <label for="via">Via*:</label>
+        <input type="text" id="via" name="via" placeholder="via/piazza" required>
+        <br><br>
 
-        <label for="comune">Comune:</label>
-        <input type="text" id="comune" name="comune"><br>
+         <!-- CAP -->
+         <label for="CAP">CAP*:</label>
+        <input type="text" id="CAP" name="CAP" pattern="^\d{5}$" required>
+        <br><br>
 
-        <label for="cap">CAP:</label>
-        <input type="text" id="cap" name="cap" require><br>
+         <!-- Comune -->
+         <label for="Comune">Comune*:</label>
+        <input type="text" id="Comune" name="Comune" required>
+        <br><br>
 
-        <label for="provincia">Provincia:</label>
-        <input type="text" id="provincia" name="provincia" require><br>
+         <!-- Provincia -->
+         <label for="provincia">Provincia*:</label>
+        <input type="text" id="provincia" name="provincia" required>
+        <br><br>
 
-        <label for="nickname">Nickname:</label>
-        <input type="text" id="nickname" name="nickname"><br>
+        <!-- Nickname -->
+        <label for="nickname">Nickname*:</label>
+        <input type="text" id="nickname" name="nickname" required>
+        <br><br>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-
-
-
+        <!-- Password -->
+        <label for="password">Password* :</label>
+        <input type="password" id="password" name="password" pattern="(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}" required>
+        <br><br>
 
         <input type="submit" value="Invia">
     </form>
+</body>
+</html>
 
-<?php
