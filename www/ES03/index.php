@@ -42,12 +42,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form validazione</title>
+    <link rel="stylesheet" href="stile.css">
 </head>
 <body>
     <h2>Form di Registrazione Utente</h2>
     <form action="validazione.php" method="POST">
         <!-- Nome -->
-        <label for="nome">Nome*:</label>
+        <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" pattern="[A-Za-zÀ-ÿ\s]+" required>
         <br><br>
 
