@@ -1,4 +1,3 @@
---crea un database per una videoteca
 CREATE DATABASE IF NOT EXISTS videoteca;
 use videoteca;
 
@@ -33,14 +32,16 @@ CREATE TABLE IF NOT EXISTS prenotazione (
 
 --aggiunge un film all'elenco
 INSERT INTO film (titolo, anno_uscita, durata_minuti, genere, regista)
-VALUES ('Titanic', 1997, 194 minutes, 'Drama', 'Francis Ford Coppola');
-
-INSERT INTO film (titolo, anno_uscita, durata_minuti, genere, regista)
-VALUES ('Avatar', 2009, 162 minutes, 'Fantasy', 'Christopher Nolan');
+VALUES
+  ('Titanic', 1997, 194, 'Drama', 'Francis Ford Coppola'),
+  ('Avatar', 2009, 162, 'Fantasy', 'Christopher Nolan'),
+  ('Star Wars: The Force Awakens', 2015, 136, 'Action', 'George Lucas'),
+  ('1984',1984,110, 'sci-fi','Micheal Radford' );
+  
 
 --aggiunge un utente all'elenco
 INSERT INTO utente (nome, cognome, email, password)
-VALUES ('John', 'Doe', 'john.doe@example.com')
+VALUES ('John', 'Doe', 'john.doe@example.com');
 
 --prenota un film per un utente
 INSERT INTO prenotazione (film_id, utente_id, data_prenotazione)
