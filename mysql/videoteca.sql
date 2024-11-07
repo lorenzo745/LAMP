@@ -1,14 +1,22 @@
 CREATE DATABASE IF NOT EXISTS videoteca;
 use videoteca;
 
+--crea tabella genere
+CREATE TABLE IF NOT EXISTS genere (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(50) NOT NULL
+);
+
 --crea una tabella per i film
 CREATE TABLE IF NOT EXISTS film (
   id INT AUTO_INCREMENT PRIMARY KEY,
+  id_genere INT NOT NULL,
   titolo VARCHAR(100) NOT NULL,
   anno_uscita YEAR NOT NULL,
   durata_minuti INT NOT NULL,
   genere VARCHAR(50) NOT NULL,
-  regista VARCHAR(100) NOT NULL
+  regista VARCHAR(100) NOT NULL,
+  FOREIGN KEY (id_genere) REFERENCES genere (id) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
 --crea una tabella per gli utenti
@@ -26,27 +34,82 @@ CREATE TABLE IF NOT EXISTS prenotazione (
   film_id INT NOT NULL,
   utente_id INT NOT NULL,
   data_prenotazione DATE NOT NULL,
-  FOREIGN KEY (film_id) REFERENCES film(id),
-  FOREIGN KEY (utente_id) REFERENCES utente(id)
+  costo INT NOT NULL,
+  FOREIGN KEY (film_id) REFERENCES film(id) ON DELETE NO ACTION ON UPDATE CASCADE,
+  FOREIGN KEY (utente_id) REFERENCES utente(id) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
+--crea una tabella registi
+CREATE TABLE IF NOT EXISTS regista (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(50) NOT NULL,
+  cognome VARCHAR(50) NOT NULL
+);
+--crea tabella attori
+CREATE TABLE IF NOT EXISTS attori (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(50) NOT NULL,
+  cognome VARCHAR(50) NOT NULL
+);
+--crea tabella contratto
+CREATE TABLE IF NOT EXISTS contratto (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  regista_id INT NOT NULL,
+  attori_id INT NOT NULL,
+  costo INT NOT NULL,
+  data_inizio DATE NOT NULL,
+  data_fine DATE,
+  FOREIGN KEY (regista_id) REFERENCES regista(id) ON DELETE NO ACTION ON UPDATE CASCADE,
+  FOREIGN KEY (attori_id) REFERENCES attori(id) ON DELETE NO ACTION ON UPDATE CASCADE
+);
+
+
+
 --aggiunge un film all'elenco
-INSERT INTO film (titolo, anno_uscita, durata_minuti, genere, regista)
-VALUES
-  ('Titanic', 1997, 194, 'Drama', 'Francis Ford Coppola'),
-  ('Avatar', 2009, 162, 'Fantasy', 'Christopher Nolan'),
-  ('Star Wars: The Force Awakens', 2015, 136, 'Action', 'George Lucas'),
-  ('1984',1984,110, 'sci-fi','Micheal Radford' );
-  
+INSERT INTO film (id_genere, titolo, anno_uscita, durata_minuti, genere, regista)
+VALUES 
+(1, 'Titanic', 1997, 194, 'Drama', 'Francis Ford Coppola'),
+(2, 'Avatar', 2009, 162, 'Fantasy', 'Christopher Nolan'),
+(3, 'Star Wars: The Force Awakens', 2015, 136, 'Fantasy', 'George Lucas');
 
 --aggiunge un utente all'elenco
 INSERT INTO utente (nome, cognome, email, password)
-VALUES ('John', 'Doe', 'john.doe@example.com');
+VALUES ('John', 'Doe', 'john.doe@example.com',12345);
 
 --prenota un film per un utente
-INSERT INTO prenotazione (film_id, utente_id, data_prenotazione)
-VALUES (1, 1, '2022-01-01');
+INSERT INTO prenotazione (film_id, utente_id, data_prenotazione, costo)
+VALUES (1, 1, '2022-01-15', 100);
 
+--insert into di registi
+INSERT INTO regista (nome, cognome)
+VALUES ('Francis', 'Ford Coppola'),
+  ('Christopher', 'Nolan'),
+  ('George', 'Lucas'),
+  ('Micheal', 'Radford');
+
+
+--insert into di attori
+INSERT INTO attori (nome, cognome)
+VALUES 
+  ('Leonardo', 'DiCaprio'),
+  ('Ryan', 'Reynolds'),
+  ('Ryan', 'Gosling'),
+  ('Chris', 'Hemsworth');
+
+--inserti into contratto
+INSERT INTO contratto (regista_id, attori_id, costo, data_inizio)
+VALUES
+  (1, 1, 100000, '2022-01-01'),
+  (2, 2, 150000, '2022-01-01'),
+  (3, 3, 200000, '2022-01-01'),
+  (4, 4, 250000, '2022-01-01');
+
+--insert into genere
+INSERT INTO genere (nome)
+VALUES ('Drama'),
+  ('Fantasy'),
+  ('Action'),
+  ('Sci-fi');
 
 --mostra tutti i film prenotati da un utente
 SELECT f.titolo, f.anno_uscita, f.durata_minuti, f.genere, f.regista
