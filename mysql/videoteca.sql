@@ -68,9 +68,10 @@ CREATE TABLE IF NOT EXISTS contratto (
 --aggiunge un film all'elenco
 INSERT INTO film (id_genere, titolo, anno_uscita, durata_minuti, genere, regista)
 VALUES 
-(1, 'Titanic', 1997, 194, 'Drama', 'Francis Ford Coppola'),
-(2, 'Avatar', 2009, 162, 'Fantasy', 'Christopher Nolan'),
-(3, 'Star Wars: The Force Awakens', 2015, 136, 'Fantasy', 'George Lucas');
+  (1, 'Inception', 2010, 148, 'Thriller', 'Christopher Nolan'),
+  (2, 'The Shawshank Redemption', 1994, 142, 'Drama', 'Frank Darabont'),
+  (3, 'Eternal Sunshine of the Spotless Mind', 2004, 108, 'Drama', 'Kate Winslet');
+
 
 --aggiunge un utente all'elenco
 INSERT INTO utente (nome, cognome, email, password)
