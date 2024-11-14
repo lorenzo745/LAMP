@@ -63,7 +63,12 @@ CREATE TABLE IF NOT EXISTS contratto (
   FOREIGN KEY (attori_id) REFERENCES attori(id) ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
-
+--insert into genere
+INSERT INTO genere (nome)
+VALUES ('Drama'),
+  ('Fantasy'),
+  ('Action'),
+  ('Sci-fi');
 
 --aggiunge un film all'elenco
 INSERT INTO film (id_genere, titolo, anno_uscita, durata_minuti, genere, regista)
@@ -105,12 +110,6 @@ VALUES
   (3, 3, 200000, '2022-01-01'),
   (4, 4, 250000, '2022-01-01');
 
---insert into genere
-INSERT INTO genere (nome)
-VALUES ('Drama'),
-  ('Fantasy'),
-  ('Action'),
-  ('Sci-fi');
 
 --mostra tutti i film prenotati da un utente
 SELECT f.titolo, f.anno_uscita, f.durata_minuti, f.genere, f.regista
