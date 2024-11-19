@@ -5,10 +5,28 @@ USE biblioteca;
 CREATE TABLE IF NOT EXISTS autori (
     id_autore INT AUTO_INCREMENT PRIMARY KEY,
     nome_autore VARCHAR(50) NOT NULL,
-    nazionalita VARCHAR(50),
     data_nascita DATE,
-    data_morte DATE
+    data_morte DATE,
+    nazionalita_id INT,
+    FOREIGN KEY (nazionalita_id) REFERENCES nazionalita(id_nazionalita)
 );
+
+
+-- Creare la tabella delle nazionalità
+CREATE TABLE IF NOT EXISTS nazionalita (
+    id_nazionalita INT AUTO_INCREMENT PRIMARY KEY,
+    nome_nazionalita VARCHAR(50) NOT NULL
+);
+
+
+INSERT INTO nazionalita (nome_nazionalita)
+VALUES
+    ('Inglese'),
+    ('Americana'),
+    ('Francese'),
+    ('Germanica'),
+    ('Spagnolo');
+
 
 
 INSERT INTO autori (nome_autore, nazionalita, data_nascita, data_morte)
