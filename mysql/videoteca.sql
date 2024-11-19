@@ -112,25 +112,25 @@ VALUES
 
 
 --mostra tutti i film prenotati da un utente
-SELECT f.titolo, f.anno_uscita, f.durata_minuti, f.genere, f.regista
-FROM prenotazione p
-JOIN film f ON p.film_id = f.id
-JOIN utente u ON p.utente_id = u.id
-WHERE u.id = 1;
+SELECT film.titolo, film.anno_uscita, film.durata_minuti, film.genere, film.regista
+FROM prenotazione
+JOIN film ON prenotazione.film_id = film.id
+JOIN utente ON prenotazione.utente_id = utente.id
+WHERE utente.id = 1;
 
 
 --mostra tutti i film in prenotazione
-SELECT f.titolo, f.anno_uscita, f.durata_minuti, f.genere, f.regista, p.data_prenotazione
-FROM film f
-LEFT JOIN prenotazione p ON f.id = p.film_id
-WHERE p.data_prenotazione IS NOT NULL;
+SELECT film.titolo, film.anno_uscita, film.durata_minuti, film.genere, film.regista, prenotazione.data_prenotazione
+FROM film 
+LEFT JOIN prenotazione ON film.id = prenotazione.film_id
+WHERE prenotazione.data_prenotazione IS NOT NULL;
 
 
 --mostra tutti i film disponibili per prenotazione
-SELECT f.titolo, f.anno_uscita, f.durata_minuti, f.genere, f.regista
-FROM film f
-LEFT JOIN prenotazione p ON f.id = p.film_id
-WHERE p.data_prenotazione IS NULL;
+SELECT film.titolo, film.anno_uscita, film.durata_minuti, film.genere, film.regista
+FROM film 
+LEFT JOIN prenotazione ON film.id = prenotazione.film_id
+WHERE prenotazione.data_prenotazione IS NULL;
 
 
 --cancella una prenotazione
