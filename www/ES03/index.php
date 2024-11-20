@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $codice_fiscale = filter_input(INPUT_POST, 'codice_fiscale');
     $email = filter_input(INPUT_POST, 'email');
     $cellulare = filter_input(INPUT_POST, 'cellulare');
-    $comune = filter_input(INPUT_POST, 'comune');
+    $comune = filter_input(INPUT_POST, 'Comune');
     $indirizzo = filter_input(INPUT_POST, 'indirizzo');
     $nickname = filter_input(INPUT_POST, 'nickname');
     $password = $_POST['password'];
@@ -90,8 +90,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <br><br>
 
          <!-- Comune -->
-         <label for="Comune">Comune*:</label>
-        <input type="text" id="Comune" name="Comune" required>
+         <label for="comune">Comune*:</label>
+        <input type="text" id="comune" name="comune" required>
         <br><br>
 
          <!-- Provincia -->

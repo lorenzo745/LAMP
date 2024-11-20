@@ -44,7 +44,7 @@
         echo "<p><strong>Cellulare:</strong> $cellulare</p>";
         echo "<p><strong>Via:</strong> $via</p>";
         echo "<p><strong>CAP:</strong> $CAP</p>";
-        echo "<p><strong>Comune:</strong> $Comune</p>";
+        echo "<p><strong>Comune:</strong> $comune</p>";
         echo "<p><strong>Provincia:</strong> $provincia</p>";
         echo "<p><strong>Nickname:</strong> $nickname</p>";
     } else {
