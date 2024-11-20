@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $codice_fiscale = filter_input(INPUT_POST, 'codice_fiscale');
     $email = filter_input(INPUT_POST, 'email');
     $cellulare = filter_input(INPUT_POST, 'cellulare');
+    $comune = filter_input(INPUT_POST, 'comune');
     $indirizzo = filter_input(INPUT_POST, 'indirizzo');
     $nickname = filter_input(INPUT_POST, 'nickname');
     $password = $_POST['password'];
@@ -31,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Codice Fiscale: $codice_fiscale<br>";
     echo "Email: $email<br>";
     echo "Cellulare: $cellulare<br>";
+    echo "Comune: $comune<br>";
     echo "Indirizzo: $indirizzo<br>";
     echo "Nickname: $nickname<br>";
 }
@@ -105,6 +107,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <!-- Password -->
         <label for="password">Password* :</label>
         <input type="password" id="password" name="password" pattern="(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}" required>
+        <br><br>
+
+        <!-- far apparire un testo con scritto * campo obbligatorio-->
+         <small>* Campi obbligatori</small>
         <br><br>
 
         <input type="submit" value="Invia">
