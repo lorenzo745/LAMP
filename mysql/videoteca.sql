@@ -111,28 +111,6 @@ VALUES
   (4, 4, 250000, '2022-01-01');
 
 
---mostra tutti i film prenotati da un utente
-SELECT film.titolo, film.anno_uscita, film.durata_minuti, film.genere, film.regista
-FROM prenotazione
-JOIN film ON prenotazione.film_id = film.id
-JOIN utente ON prenotazione.utente_id = utente.id
-WHERE utente.id = 1;
-
-
---mostra tutti i film in prenotazione
-SELECT film.titolo, film.anno_uscita, film.durata_minuti, film.genere, film.regista, prenotazione.data_prenotazione
-FROM film 
-LEFT JOIN prenotazione ON film.id = prenotazione.film_id
-WHERE prenotazione.data_prenotazione IS NOT NULL;
-
-
---mostra tutti i film disponibili per prenotazione
-SELECT film.titolo, film.anno_uscita, film.durata_minuti, film.genere, film.regista
-FROM film 
-LEFT JOIN prenotazione ON film.id = prenotazione.film_id
-WHERE prenotazione.data_prenotazione IS NULL;
-
-
 --cancella una prenotazione
 DELETE FROM prenotazione
 WHERE id = 1;
