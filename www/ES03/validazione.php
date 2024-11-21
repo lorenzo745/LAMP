@@ -6,7 +6,7 @@
     <title>Visualizzazione Dati Utente</title>
 </head>
 <body>
-    <h2>Dati inseriti nel form:</h2>
+    <h1>Dati inseriti nel form:</h1>
 
     <?php
     // Verifica se il form è stato inviato correttamente tramite POST
@@ -26,6 +26,8 @@
 
         $via = isset($_POST['via']) ? $_POST['via'] : 'Non fornito';
 
+        $nCivico = isset($_POST['civico'])? $_POST['civico'] : 'Non fornito';
+
         $CAP = isset($_POST['CAP']) ? $_POST['CAP'] : 'Non fornito';
 
         $comune = isset($_POST['comune']) ? $_POST['comune'] : 'Non fornito';
@@ -33,6 +35,8 @@
         $provincia = isset($_POST['provincia']) ? $_POST['provincia'] : 'Non fornito';
 
         $nickname = isset($_POST['nickname']) ? $_POST['nickname'] : 'Non fornito';
+
+        $password = isset($_POST['password'])? $_POST['password'] : 'Non fornito';
 
         
         // Visualizzazione dei dati
@@ -42,11 +46,9 @@
         echo "<p><strong>Codice Fiscale:</strong> $codice_fiscale</p>";
         echo "<p><strong>Email:</strong> $email</p>";
         echo "<p><strong>Cellulare:</strong> $cellulare</p>";
-        echo "<p><strong>Via:</strong> $via</p>";
-        echo "<p><strong>CAP:</strong> $CAP</p>";
-        echo "<p><strong>Comune:</strong> $comune</p>";
-        echo "<p><strong>Provincia:</strong> $provincia</p>";
+        echo "<p><strong>Indirizzo:</strong> (via/piazza) $via $nCivico, $CAP $comune ($provincia)</p>";
         echo "<p><strong>Nickname:</strong> $nickname</p>";
+        echo "<p><strong>Password:</strong> $password</p>";
     } else {
         echo "<p>Nessun dato è stato inviato.</p>";
     }
