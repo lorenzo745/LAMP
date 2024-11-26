@@ -23,18 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "La password deve contenere almeno una maiuscola, un numero e un carattere speciale.";
         exit;
     }
-
-    // Controllo e memorizzazione dati
-    echo "Dati ricevuti:<br>";
-    echo "Nome: $nome<br>";
-    echo "Cognome: $cognome<br>";
-    echo "Data di nascita: $data_nascita<br>";
-    echo "Codice Fiscale: $codice_fiscale<br>";
-    echo "Email: $email<br>";
-    echo "Cellulare: $cellulare<br>";
-    echo "Comune: $comune<br>";
-    echo "Indirizzo: $indirizzo<br>";
-    echo "Nickname: $nickname<br>";
 }
 ?>
 
