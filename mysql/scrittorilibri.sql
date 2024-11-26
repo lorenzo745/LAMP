@@ -38,10 +38,14 @@ CREATE TABLE genere(
     FOREIGN KEY (libro_id) REFERENCES libri(ISBN)
 );
 
+show tables;
+
 INSERT INTO scrittori (nome, cognome, data_nascita, data_morte)
 VALUES 
     ('Mario', 'Rossi', '1950-01-01', '2000-12-31'),
     ('Andrea', 'Bianchi', '1960-02-02', NULL);
+
+select from * scrittori;
 
 INSERT INTO libri (titolo, scrittore_id)
 VALUES 
