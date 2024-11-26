@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.39, for Linux (x86_64)
 --
 -- Host: localhost    Database: biblioteca
 -- ------------------------------------------------------
--- Server version	8.0.34-0ubuntu0.22.04.1
+-- Server version	8.0.39-0ubuntu0.22.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,10 +25,12 @@ DROP TABLE IF EXISTS `autori`;
 CREATE TABLE `autori` (
   `id_autore` int NOT NULL AUTO_INCREMENT,
   `nome_autore` varchar(50) NOT NULL,
-  `nazionalita` varchar(50) DEFAULT NULL,
   `data_nascita` date DEFAULT NULL,
   `data_morte` date DEFAULT NULL,
-  PRIMARY KEY (`id_autore`)
+  `nazionalita_id` int DEFAULT NULL,
+  PRIMARY KEY (`id_autore`),
+  KEY `nazionalita_id` (`nazionalita_id`),
+  CONSTRAINT `autori_ibfk_1` FOREIGN KEY (`nazionalita_id`) REFERENCES `nazionalita` (`id_nazionalita`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -38,7 +40,7 @@ CREATE TABLE `autori` (
 
 LOCK TABLES `autori` WRITE;
 /*!40000 ALTER TABLE `autori` DISABLE KEYS */;
-INSERT INTO `autori` VALUES (1,'Jane Austen','Inglese','1775-12-16','1817-07-18'),(2,'George Orwell','Inglese','1903-06-25','1950-01-21'),(3,'Harper Lee','Americana','1926-04-28','2016-02-19');
+INSERT INTO `autori` VALUES (1,'Jane Austen','1775-12-16','1817-07-18',1),(2,'George Orwell','1903-06-25','1950-01-21',1),(3,'Harper Lee','1926-04-28','2016-02-19',2);
 /*!40000 ALTER TABLE `autori` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,6 +98,30 @@ LOCK TABLES `libri` WRITE;
 INSERT INTO `libri` VALUES (1,'Orgoglio e pregiudizio',1,1,1813),(2,'1984',2,3,1949),(3,'Il buio oltre la siepe',3,1,1960),(4,'Guerra e pace',1,1,1869);
 /*!40000 ALTER TABLE `libri` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `nazionalita`
+--
+
+DROP TABLE IF EXISTS `nazionalita`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nazionalita` (
+  `id_nazionalita` int NOT NULL AUTO_INCREMENT,
+  `nome_nazionalita` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_nazionalita`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `nazionalita`
+--
+
+LOCK TABLES `nazionalita` WRITE;
+/*!40000 ALTER TABLE `nazionalita` DISABLE KEYS */;
+INSERT INTO `nazionalita` VALUES (1,'Inglese'),(2,'Americana'),(3,'Francese'),(4,'Germanica'),(5,'Spagnolo');
+/*!40000 ALTER TABLE `nazionalita` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -106,4 +132,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-25 13:28:15
+-- Dump completed on 2024-11-26  8:34:18

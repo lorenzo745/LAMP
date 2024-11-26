@@ -1,6 +1,12 @@
 CREATE DATABASE IF NOT EXISTS biblioteca;
 USE biblioteca;
 
+-- Creare la tabella delle nazionalità
+CREATE TABLE IF NOT EXISTS nazionalita (
+    id_nazionalita INT AUTO_INCREMENT PRIMARY KEY,
+    nome_nazionalita VARCHAR(50) NOT NULL
+);
+
 -- Creare la tabella degli autori
 CREATE TABLE IF NOT EXISTS autori (
     id_autore INT AUTO_INCREMENT PRIMARY KEY,
@@ -10,14 +16,6 @@ CREATE TABLE IF NOT EXISTS autori (
     nazionalita_id INT,
     FOREIGN KEY (nazionalita_id) REFERENCES nazionalita(id_nazionalita)
 );
-
-
--- Creare la tabella delle nazionalità
-CREATE TABLE IF NOT EXISTS nazionalita (
-    id_nazionalita INT AUTO_INCREMENT PRIMARY KEY,
-    nome_nazionalita VARCHAR(50) NOT NULL
-);
-
 
 INSERT INTO nazionalita (nome_nazionalita)
 VALUES
@@ -29,11 +27,11 @@ VALUES
 
 
 
-INSERT INTO autori (nome_autore, nazionalita, data_nascita, data_morte)
+INSERT INTO autori (nome_autore, nazionalita_id, data_nascita, data_morte)
 VALUES
-    ('Jane Austen', 'Inglese', '1775-12-16', '1817-07-18'),
-    ('George Orwell', 'Inglese', '1903-06-25', '1950-01-21'),
-    ('Harper Lee', 'Americana', '1926-04-28', '2016-02-19');
+    ('Jane Austen', 1, '1775-12-16', '1817-07-18'),
+    ('George Orwell', 1, '1903-06-25', '1950-01-21'),
+    ('Harper Lee', 2, '1926-04-28', '2016-02-19');
 
 
 SELECT * FROM autori;
