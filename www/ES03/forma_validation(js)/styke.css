@@ -1,0 +1,4 @@
+input:focus {
+    border: 3px dashed darkblue; /* Cambia spessore e tipo di bordo */
+    background-color: lightyellow; /* Cambia il colore di sfondo */
+}

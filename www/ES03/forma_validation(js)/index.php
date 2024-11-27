@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form validazione</title>
     <link rel="stylesheet" href="stile.css">
+
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="validation.js"></script>
 </head>
 <body>
     <h1>FORM DI REGISTRAZIONE</h1>
