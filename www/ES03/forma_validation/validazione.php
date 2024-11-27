@@ -12,31 +12,31 @@
     // Verifica se il form è stato inviato correttamente tramite POST
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Recupera i dati inviati dal form senza sanitizzazione
-        $nome = isset($_POST['nome']) ? $_POST['nome'] : 'Non fornito';
+        $nome = trim($_POST['nome']);
 
-        $cognome = isset($_POST['cognome']) ? $_POST['cognome'] : 'Non fornito';
+        $cognome = trim($_POST['cognome']);
 
-        $data_nascita = isset($_POST['data_nascita']) ? $_POST['data_nascita'] : 'Non fornito';
+        $dataNascita = trim($_POST['data_nascita']);
 
-        $codice_fiscale = isset($_POST['codice_fiscale']) ? $_POST['codice_fiscale'] : 'Non fornito';
+        $cf = strtoupper(trim($_POST['codice_fiscale']));
 
-        $email = isset($_POST['email']) ? $_POST['email'] : 'Non fornita';
+        $email = trim($_POST['email']);
 
-        $cellulare = isset($_POST['cellulare']) ? $_POST['cellulare'] : 'Non fornito';
+        $tel = trim($_POST['tel']);
 
-        $via = isset($_POST['via']) ? $_POST['via'] : 'Non fornito';
+        $via = trim($_POST['via']);
 
-        $nCivico = isset($_POST['civico'])? $_POST['civico'] : 'Non fornito';
+        $nCivico = trim($_POST['nCivico']);
 
-        $CAP = isset($_POST['CAP']) ? $_POST['CAP'] : 'Non fornito';
+        $cap = trim($_POST['cap']);
 
-        $comune = isset($_POST['comune']) ? $_POST['comune'] : 'Non fornito';
+        $comune = trim($_POST['comune']);
 
-        $provincia = isset($_POST['provincia']) ? $_POST['provincia'] : 'Non fornito';
+        $provincia = strtoupper(trim($_POST['provincia']));
 
-        $nickname = isset($_POST['nickname']) ? $_POST['nickname'] : 'Non fornito';
+        $username = trim($_POST['username']);
 
-        $password = isset($_POST['password'])? $_POST['password'] : 'Non fornito';
+        $password = trim($_POST['password']);
 
         
         // Visualizzazione dei dati
