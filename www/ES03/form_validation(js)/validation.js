@@ -32,13 +32,13 @@ function validateInput() {
 // Funzioni di validazione per ciascun campo
 
 function validateNome(elemento) {
-    const nomeRegex = /^[a-zA-Zàèéìòùç\s]+$/; // Accetta lettere e caratteri speciali italiani
-    applyValidation(elemento, nomeRegex);
+    const nome = /^[a-zA-Zàèéìòùç\s]+$/; // Accetta lettere e caratteri speciali italiani
+    applyValidation(elemento, nome);
 }
 
 function validateCognome(elemento) {
-    const cognomeRegex = /^[a-zA-Zàèéìòùç\s'-]+$/; // Accetta lettere, apostrofi e trattini
-    applyValidation(elemento, cognomeRegex);
+    const cognome = /^[a-zA-Zàèéìòùç\s'-]+$/; // Accetta lettere, apostrofi e trattini
+    applyValidation(elemento, cognome);
 }
 
 function validateData(elemento) {
@@ -48,7 +48,7 @@ function validateData(elemento) {
         const isValidDate = year >= 1900 && year <= 2024 &&
                             month >= 1 && month <= 12 &&
                             day >= 1 && day <= 31;
-        setValidationStyle(elemento, isValidDate);
+        setValidationStyle(elemento, isValid);
     } else {
         setValidationStyle(elemento, false);
     }
@@ -116,5 +116,10 @@ function applyValidation(elemento, regex) {
 
 // Aggiorna il bordo in base alla validità
 function setValidationStyle(elemento, isValid) {
-    elemento.style.border = isValid ? '2px solid green' : '2px solid red';
+    if (isValid) {
+        elemento.style.border = "2px solid green";
+    } else {
+        elemento.style.border = "2px solid red";
+    }
 }
+

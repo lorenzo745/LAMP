@@ -1,15 +1,15 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Raccolta dati dal form
-    $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE);
-    $cognome = filter_input(INPUT_POST, 'cognome', FILTER_SANITIZE );
+    $nome = filter_input(INPUT_POST, 'nome');
+    $cognome = filter_input(INPUT_POST, 'cognome' );
     $data_nascita = $_POST['data_nascita'];
-    $codice_fiscale = filter_input(INPUT_POST, 'codice_fiscale',FILTER_SANITIZE);
+    $codice_fiscale = filter_input(INPUT_POST, 'codice_fiscale');
     $email = filter_input(INPUT_POST, 'email',FILTER_VALIDATE_EMAIL);
-    $cellulare = filter_input(INPUT_POST, 'cellulare',FILTER_SANITIZE);
-    $comune = filter_input(INPUT_POST, 'Comune',FILTER_SANITIZE);
-    $indirizzo = filter_input(INPUT_POST, 'indirizzo',FILTER_SANITIZE);
-    $nickname = filter_input(INPUT_POST, 'nickname',FILTER_SANITIZE);
+    $cellulare = filter_input(INPUT_POST, 'cellulare');
+    $comune = filter_input(INPUT_POST, 'Comune');
+    $indirizzo = filter_input(INPUT_POST, 'indirizzo');
+    $nickname = filter_input(INPUT_POST, 'nickname');
     $password = $_POST['password'];
 
     // Validazione aggiuntiva nickname
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $via = trim($_POST['via']);
 
-        $nCivico = trim($_POST['nCivico']);
+        $civico = trim($_POST['civico']);
 
         $cap = trim($_POST['cap']);
 
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<p><strong>Codice Fiscale:</strong> $codice_fiscale</p>";
         echo "<p><strong>Email:</strong> $email</p>";
         echo "<p><strong>Cellulare:</strong> $cellulare</p>";
-        echo "<p><strong>Indirizzo:</strong> (via/piazza) $via $nCivico, $CAP $comune ($provincia)</p>";
+        echo "<p><strong>Indirizzo:</strong> (via/piazza) $via $civico, $CAP $comune ($provincia)</p>";
         echo "<p><strong>Nickname:</strong> $nickname</p>";
         echo "<p><strong>Password:</strong> $password</p>";
     } else {
