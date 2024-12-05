@@ -122,3 +122,6 @@ WHERE id = 1;
 --cancella un utente dall'elenco
 DELETE FROM utente
 WHERE id = 1;
+
+mysqldump -u root videoteca > videoteca_v1_261124.sql
+mysql -u root videoteca < videoteca_v1_261124.sql
