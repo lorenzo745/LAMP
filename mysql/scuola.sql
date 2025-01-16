@@ -73,6 +73,14 @@ select s.cognome , v.voto , m.nome
 from studenti s,valutazioni v, materie m
 where s.id = v.studente_id and v.materia_id = m.id;
 
+select s.cognome, v.voto
+from studenti s left join valutazioni v 
+    ON s.id = v.studente_id;
+
+select s.cognome, s1.cognome
+from studenti s, studenti s1
+where s.capogruppo = s1.id;
+
 
 mysqldump -u root scuola > scuola_v1_05122024.sql
 mysql -u root scuola < scuola_v1_051224.sql 
