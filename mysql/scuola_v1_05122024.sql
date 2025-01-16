@@ -16,6 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `corsi`
+--
+
+DROP TABLE IF EXISTS `corsi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `corsi` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `corsi`
+--
+
+LOCK TABLES `corsi` WRITE;
+/*!40000 ALTER TABLE `corsi` DISABLE KEYS */;
+INSERT INTO `corsi` VALUES (1,'Informatica'),(2,'Scienze Umane'),(3,'Lingue');
+/*!40000 ALTER TABLE `corsi` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `materie`
 --
 
@@ -48,9 +72,10 @@ DROP TABLE IF EXISTS `studenti`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `studenti` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
   `cognome` varchar(100) NOT NULL,
   `data_nascita` date NOT NULL,
+  `corso_studi` varchar(100) NOT NULL,
+  `capogruppo` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -61,7 +86,7 @@ CREATE TABLE `studenti` (
 
 LOCK TABLES `studenti` WRITE;
 /*!40000 ALTER TABLE `studenti` DISABLE KEYS */;
-INSERT INTO `studenti` VALUES (1,'Mario','Rossi','1990-05-15'),(2,'Giuseppe','Verdi','1988-12-07'),(3,'Anna','Bianchi','1995-03-20');
+INSERT INTO `studenti` VALUES (1,'Rossi','1990-05-15','1',2),(2,'Verdi','1988-12-07','3',1),(3,'Bianchi','1995-03-20','2',3);
 /*!40000 ALTER TABLE `studenti` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,11 +102,13 @@ CREATE TABLE `valutazioni` (
   `studente_id` int NOT NULL,
   `materia_id` int NOT NULL,
   `voto` float NOT NULL,
+  `data_voto` date NOT NULL,
+  `comment` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `studente_id` (`studente_id`),
   KEY `materia_id` (`materia_id`),
-  CONSTRAINT `valutazioni_ibfk_1` FOREIGN KEY (`studente_id`) REFERENCES `studenti` (`id`),
-  CONSTRAINT `valutazioni_ibfk_2` FOREIGN KEY (`materia_id`) REFERENCES `materie` (`id`)
+  CONSTRAINT `valutazioni_ibfk_1` FOREIGN KEY (`studente_id`) REFERENCES `studenti` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `valutazioni_ibfk_2` FOREIGN KEY (`materia_id`) REFERENCES `materie` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -91,7 +118,7 @@ CREATE TABLE `valutazioni` (
 
 LOCK TABLES `valutazioni` WRITE;
 /*!40000 ALTER TABLE `valutazioni` DISABLE KEYS */;
-INSERT INTO `valutazioni` VALUES (1,1,1,9),(2,1,2,8.5),(3,1,3,9.5),(4,2,1,8);
+INSERT INTO `valutazioni` VALUES (1,1,1,9,'2024-01-12','bravo'),(2,1,2,8.5,'2024-12-23','bravissimo'),(3,1,3,9.5,'2025-09-23','malino'),(4,2,1,8,'2024-07-27','ottimo');
 /*!40000 ALTER TABLE `valutazioni` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -104,4 +131,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-05  8:19:37
+-- Dump completed on 2025-01-16  8:29:37
