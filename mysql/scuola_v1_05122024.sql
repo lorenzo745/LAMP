@@ -74,10 +74,12 @@ CREATE TABLE `studenti` (
   `id` int NOT NULL AUTO_INCREMENT,
   `cognome` varchar(100) NOT NULL,
   `data_nascita` date NOT NULL,
-  `corso_studi` varchar(100) NOT NULL,
+  `corso_studi` int DEFAULT NULL,
   `capogruppo` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  KEY `corso_studi` (`corso_studi`),
+  CONSTRAINT `studenti_ibfk_1` FOREIGN KEY (`corso_studi`) REFERENCES `corsi` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -86,7 +88,7 @@ CREATE TABLE `studenti` (
 
 LOCK TABLES `studenti` WRITE;
 /*!40000 ALTER TABLE `studenti` DISABLE KEYS */;
-INSERT INTO `studenti` VALUES (1,'Rossi','1990-05-15','1',2),(2,'Verdi','1988-12-07','3',1),(3,'Bianchi','1995-03-20','2',3);
+INSERT INTO `studenti` VALUES (1,'Rossi','1990-05-15',1,2),(2,'Verdi','1988-12-07',3,1),(3,'Bianchi','1995-03-20',2,3),(4,'Marchetti','1995-03-20',2,1),(5,'Marini','1995-03-20',2,1),(6,'Mele','1995-03-20',2,1);
 /*!40000 ALTER TABLE `studenti` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -109,7 +111,7 @@ CREATE TABLE `valutazioni` (
   KEY `materia_id` (`materia_id`),
   CONSTRAINT `valutazioni_ibfk_1` FOREIGN KEY (`studente_id`) REFERENCES `studenti` (`id`) ON DELETE CASCADE,
   CONSTRAINT `valutazioni_ibfk_2` FOREIGN KEY (`materia_id`) REFERENCES `materie` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +120,7 @@ CREATE TABLE `valutazioni` (
 
 LOCK TABLES `valutazioni` WRITE;
 /*!40000 ALTER TABLE `valutazioni` DISABLE KEYS */;
-INSERT INTO `valutazioni` VALUES (1,1,1,9,'2024-01-12','bravo'),(2,1,2,8.5,'2024-12-23','bravissimo'),(3,1,3,9.5,'2025-09-23','malino'),(4,2,1,8,'2024-07-27','ottimo');
+INSERT INTO `valutazioni` VALUES (1,1,1,9,'2024-01-12','bravo'),(2,1,2,8.5,'2024-12-23','bravissimo'),(3,1,3,9.5,'2025-09-23','malino'),(4,2,1,8,'2024-07-27','ottimo'),(5,2,2,7.5,'2024-03-29','mediocre'),(6,2,3,9,'2025-09-23','ottimo'),(7,3,1,9,'2024-01-12','bravo'),(8,3,2,8.5,'2024-12-23','bravissimo'),(9,3,3,9.5,'2025-09-23','ottimo'),(10,4,1,8,'2024-07-27','ottimo'),(11,4,2,7.5,'2024-03-29','mediocre'),(12,4,3,9,'2025-09-23','ottimo'),(13,5,1,8,'2024-07-27','ottimo'),(14,5,2,7.5,'2024-03-29','mediocre'),(15,5,3,9,'2025-09-23','ottimo');
 /*!40000 ALTER TABLE `valutazioni` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -131,4 +133,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-16  8:29:37
+-- Dump completed on 2025-01-23  8:26:24
