@@ -110,7 +110,7 @@ select s.cognome
 from studenti s 
 where YEAR(CURDATE())-YEAR(data_nascita)>=18;
 
-select s.cognome, v.voto
+select s.cognome
 from studenti s left join valutazioni v 
     ON s.id = v.studente_id
     where v.id is NULL;
