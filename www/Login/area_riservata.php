@@ -3,9 +3,13 @@
 <?php
     session_start();
     if (!isset($_SESSION['utente'])) {
-        header("Location: login.php");
-        exit;
+        // L'utente non è autenticato, quindi redirect alla pagina di login
+        $url = 'login.php?error=Fare prima il login&from=';
+        $url .= basename($_SERVER['PHP_SELF']);
+        header("Location: $url");
+        die();
     }
+    // L'utente è autenticato, mostra il messaggio di benvenuto 
 ?>
 <!DOCTYPE html>
     <html lang="en">
