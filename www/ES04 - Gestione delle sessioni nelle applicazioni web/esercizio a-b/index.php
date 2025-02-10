@@ -17,7 +17,7 @@
     <body>
         <h1>Benvenuto</h1>
         <h2>Questa è una pagina di benvenuto.</h2>
-        <a href="area_riservata.php">Riservata</a><br />
+        <a href="riservata.php">Riservata</a><br />
         <?php echo $collegamento;?>
     </body>
 </html>
