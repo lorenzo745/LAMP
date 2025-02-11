@@ -80,19 +80,22 @@ VALUES
     (5, 2, 7.5,'2024-3-29', 'mediocre'),
     (5, 3, 9.0,'2025-9-23', 'ottimo');
 
-
+--join interno
 select s.cognome, v.voto
 from studenti s join valutazioni v
     ON s.id = v.studente_id;
 
+--join tra tre tabelle
 select s.cognome , v.voto , m.nome
 from studenti s,valutazioni v, materie m
 where s.id = v.studente_id and v.materia_id = m.id;
 
+--left join
 select s.cognome, v.voto
 from studenti s left join valutazioni v 
     ON s.id = v.studente_id;
 
+--self join
 select s.cognome, s1.cognome
 from studenti s, studenti s1
 where s.capogruppo = s1.id;
