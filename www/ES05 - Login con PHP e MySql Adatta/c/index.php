@@ -1,25 +1,29 @@
-<!--Pagina index.php di benvenuto che visualizza il nome utente loggato o il nome generico “Ospite” e permette di accedere alla pagina di login.php-->
 <?php
-    session_start();
+session_start(); // Avvio la sessione PHP
 
-    if (isset($_SESSION['username'])) {
-        echo "<h1>Benvenuto, $_SESSION[username]!</h1>";
-    } 
+// Verifica se l'utente è autenticato
+$utente = $_SESSION['username'] ?? 'Ospite';
+
+// Creazione dei link in funzione dell'utente Ospite o Autenticato
+if ($utente === 'Ospite') {
+    $html_link = '<a href="login.php"><h2>Accedi</h2></a>  <a href="register.php"><h2>Registrati</h2></a>';
+} else {
+    $html_link = '<a href="riservata.php"><h2>Riservata</h2></a> <a href="profile.php"><h2>Profilo</h2></a> <a href="logout.php"><h2>Esci</h2></a>';
+}
 ?>
 
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Home Page</title>
-    </head>
-    <body>
-        <h1>Pagina di Benvenuto</h1>
-        
-        <h3><a href='login.php'>Accedi</a><br></h3>
-        <h3><a href='logout.php'>Logout</a><br></h3>
-        <h3><a href='protected_page.php'>Pagina protetta</a></h3>
-    </body>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+<body>
+  <h2>ES05 - Login con PHP e MySQL</h2>
+  <p>Benvenuto <?= $utente ?>. Questa è la home page del sito.<br />
 
+  <!-- Link -->
+  <p><?= $html_link ?></p>
+</body>
 </html>
-
-
