@@ -26,7 +26,7 @@ function controlloLogin($utente,$password){
     }
 }
 
-function logout(){
+function uscita(){
     session_start();
     session_destroy();
     header("Location: login.php");

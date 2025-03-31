@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once 'loginLib.php';
+    require_once 'funzioni.php';
 
     $collegamento = impostaCollegamento();
 ?>
