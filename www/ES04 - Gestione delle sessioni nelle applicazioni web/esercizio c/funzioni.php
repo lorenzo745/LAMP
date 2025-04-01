@@ -3,9 +3,9 @@
 function controlloSessione() 
 {
     if(isset($_SESSION['utente'])){
-        return true;
+        return [true, 'sessione avviata'];
         } else {
-        return false;
+        return [false, 'sessione non avviata'];
     }
 }
 
@@ -19,10 +19,10 @@ function controlloLogin($utente,$password){
     if ($username_inserito == $username_corretto && $password_inserita == $password_corretta) {
         // Se i dati sono corretti, salva il nome utente nella sessione e reindirizza l'utente alla pagina principale
         $_SESSION['utente'] = $username_inserito;
-        return true;
+        return [true, 'login corretto'];
     }
     else {
-        return false;
+        return [false, 'login sbagliato'];
     }
 }
 
@@ -40,5 +40,4 @@ function impostaCollegamento(){
     }
     return $collegamento;
 }
-
 ?>

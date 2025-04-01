@@ -8,7 +8,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
     <head>
         <title>Pagina di Benvenuto</title>
     </head>
