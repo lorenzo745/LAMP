@@ -8,22 +8,13 @@
 
     require 'funzioni.php';
 
-    $collegamento = '';
-
-
-    if(checksession()[0]){
-        $collegamento= "<a href='logout.php'>logout</a>";
-        } else {
-        $collegamento = "<a href='login.php'>login</a>";
-    }
-
     [$sessionretval, $sessionerrmsg] = controllosessione();
 
-    if ($sessionRetval) {
-        $redirectPage = $_GET['from'] ?? 'index.php';
-        $destination = 'Location: ' . $redirectPage;
+    if($sessionretval) {
+        $link = 'Location: ';
+        $link .= $_GET['from'] ?? 'index.php';
     
-        header($destination);
+        header($link);
         die();
     }
 
@@ -34,7 +25,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && 
     (!isset($_SESSION['tempo']) || time() - $_SESSION['tempo'] >= 60)) {
 
-    $username = $_SESSION['username'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
 
     [$retval, $retmsg] = controlloLogin($username, $password);
@@ -72,9 +63,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>Login</title>
 </head>
 <body>
@@ -82,12 +70,12 @@
         <h2>Login</h2>
         <div id="error-container"><?= $err_msg ?></div>
         <form action="<?php ($_SERVER['PHP_SELF']) ?>" method="POST">
-            <input type="text" name="username" id="username" placeholder="Username" required>
+            <input type="text" name="utente" id="utente" placeholder="utente" required>
             <br>
             <input type="password" name="password" id="password" placeholder="Password" required>
             <br>
             <input type="submit" value="Login" id="login-button">
-            <input type="hidden" name="from" value="<?=$_GET['from'] ?? null?>">
+            <input type="hidden" name="from" value="<?=$_GET['from'] ?? ''?>">
         </form>
     </div>
 </body>

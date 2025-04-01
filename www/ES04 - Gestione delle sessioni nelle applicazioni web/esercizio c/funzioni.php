@@ -13,8 +13,8 @@ function controlloLogin($utente,$password){
     $username_corretto = 'admin';
     $password_corretta = 'password123';
 
-    $username_inserito = $_POST['utente'];
-    $password_inserita = $_POST['password'];
+    $username_inserito = $utente;
+    $password_inserita = $password;
 
     if ($username_inserito == $username_corretto && $password_inserita == $password_corretta) {
         // Se i dati sono corretti, salva il nome utente nella sessione e reindirizza l'utente alla pagina principale
@@ -31,4 +31,14 @@ function uscita(){
     session_destroy();
     header("Location: login.php");
 }
+
+function impostaCollegamento(){ 
+    if(checksession()[0]){
+        $collegamento= "<a href='logout.php'>logout</a>";
+        } else {
+        $collegamento = "<a href='login.php'>login</a>";
+    }
+    return $collegamento;
+}
+
 ?>

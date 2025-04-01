@@ -44,3 +44,12 @@ function logout()
     header("Location: login.php");
     die();
 }
+
+function impostaCollegamento(){ 
+    if(checksession()[0]){
+        $collegamento= "<a href='logout.php'>logout</a>";
+        } else {
+        $collegamento = "<a href='login.php'>login</a>";
+    }
+    return $collegamento;
+}
