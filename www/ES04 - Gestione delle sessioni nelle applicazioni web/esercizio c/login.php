@@ -8,6 +8,15 @@
 
     require 'funzioni.php';
 
+    $collegamento = '';
+
+
+    if(checksession()[0]){
+        $collegamento= "<a href='logout.php'>logout</a>";
+        } else {
+        $collegamento = "<a href='login.php'>login</a>";
+    }
+
     [$sessionretval, $sessionerrmsg] = controllosessione();
 
     if ($sessionRetval) {

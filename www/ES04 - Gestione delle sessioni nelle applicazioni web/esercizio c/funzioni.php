@@ -31,13 +31,4 @@ function uscita(){
     session_destroy();
     header("Location: login.php");
 }
-
-function impostaCollegamento(){ 
-    if(checksession()[0]){
-        $collegamento= "<a href='logout.php'>logout</a>";
-        } else {
-        $collegamento = "<a href='login.php'>login</a>";
-    }
-    return $collegamento;
-}
 ?>

@@ -3,10 +3,10 @@
 
     session_start();
 
-    [$sessionRetval, $sessionretmsg] = controlloSessione();
+    [$sessionRetval, $sessionerrmsg] = controlloSessione();
 
     if (!$sessionRetval) {
-        $url = 'Location: login.php?from=' . basename($_SERVER['PHP_SELF']) . '&error=' . $sessionretmsg;
+        $url = 'Location: login.php?from=' . basename($_SERVER['PHP_SELF']) . '&error=' . $sessionerrmsg;
         header($url);
         die();
     }

@@ -44,13 +44,3 @@ function logout()
     header("Location: login.php");
     die();
 }
-
-function impostaCollegamento() {
-    if (!controllosessione()[0]) {
-    $collegamento = '<a href="register.php">Crea un account</a>';
-    } else {
-        $collegamento = '<a href="index.php">Homepage</a>';
-        $collegamento = '<a href="logout.php">Logout</a>';
-    }  
-    return $collegamento;
-}
