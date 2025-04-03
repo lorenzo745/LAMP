@@ -2,7 +2,7 @@
 session_start(); // Avvio la sessione PHP
 
 // Verifica se l'utente è autenticato
-$utente = $_SESSION['username'] ?? 'Ospite';
+$utente = $_SESSION['utente'] ?? 'Ospite';
 
 // Creazione dei link in funzione dell'utente Ospite o Autenticato
 if ($utente === 'Ospite') {

@@ -8,7 +8,7 @@
     if (!$sessionRetval) {
         $url = 'Location: login.php';
         $url .= '?from='.basename($_SERVER['PHP_SELF']);
-        $url .= '&error=' . $sessionRetmsg;
+        $url .= '&error=' . $sessionmsg;
         header($url);
         die();
     }
@@ -20,7 +20,7 @@
     <title>Pagina Riservata</title>
 </head>
 <body>
-    <?="<h3>Benvenuto " . $_SESSION['username'] . "</h3>"?>
+    <?="<h3>Benvenuto " . $_SESSION['utente'] . "</h3>"?>
 
     <a href="index.php">Home page</a>
     <br>

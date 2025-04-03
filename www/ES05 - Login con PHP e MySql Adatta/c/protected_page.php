@@ -18,7 +18,7 @@
     <title>Pagina Riservata</title>
 </head>
 <body>
-    <?="<h3>Benvenuto " . $_SESSION['username'] . "</h3>"?>
+    <?="<h3>Benvenuto " . $_SESSION['utente'] . "</h3>"?>
 
     <a href="index.php">Home page</a>
     <br>

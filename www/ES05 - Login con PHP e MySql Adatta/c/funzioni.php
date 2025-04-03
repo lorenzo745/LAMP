@@ -7,7 +7,7 @@ define('DB_NAME', 'ES05');
 
 function controllosessione()  
 {  
-    if (isset($_SESSION['username'])) {  
+    if (isset($_SESSION['utente'])) {  
         return [true, 'sessione avviata con successo'];  
     } else {  
         return [false, 'sessione non avviata'];  
@@ -23,7 +23,7 @@ function controllo_login()
         die("Attenzione! Connessione al database fallita." . mysqli_connect_error());
     }
 
-    $query = "SELECT * FROM utenti WHERE email = '$email' AND password = '$password'";
+    $query = "SELECT * FROM account WHERE username = '$username' AND password = '$password'";
     $result = mysqli_query($conn, $query);
 
     // Verifica se la query ha restituito risultati

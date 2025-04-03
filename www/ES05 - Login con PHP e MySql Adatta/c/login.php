@@ -4,22 +4,24 @@ require 'funzioni.php';
 
 session_start();
 
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['utente'])) {
     $mess = 'Accesso gia effettuato';
 }
 else if ($_SESSION['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'];
+    $utente = $_POST['utente'];
     $password = $_POST['password'];
 
-    [$Accessoretval, $Accessomsg] = controllo_login($username, $password);
+    [$Accessoretval, $Accessomsg] = controllo_login($utente, $password);
 
     $mess = $Accessomsg;
 
-    if ($loginRetval) {
-        $_SESSION['username'] = $username;
+    if ($Accessoretval) {
+        $_SESSION['utente'] = $utente;
         
-        $redirectPage = $_POST['from'] ?? 'index.php';
-        header("Location: $redirectPage");
+        $link = 'Location: ';
+        $link .= $_POST['from'] != null ? $_POST['from'] : 'index.php';
+
+        header($link);
         exit;
     }
 
@@ -40,14 +42,14 @@ else if ($_SESSION['REQUEST_METHOD'] == 'POST') {
 
         <form action="<?= $_SERVER['PHP_SELF']; ?>" method="POST">
             
-            <input type="text" name="username" id="username" placeholder="Username" pattern=".{3,}" required title="Minimo 3 lettere">
+            <input type="text" name="utente" id="utente" placeholder="utente" pattern=".{3,}" required title="Minimo 3 lettere">
             <br>
             
-            <input type="password" name="password" id="password" placeholder="Password" pattern=".{3,}" required title="Minimo 3 lettere">
+            <input type="password" name="password" id="password" placeholder="password" pattern=".{3,}" required title="Minimo 3 lettere">
             <br>
             <input type="submit" value="Login" id="login-button">
 
-            <input type="hidden" name="from" value="<?= $_GET['from'] ?? '' ?>"> 
+            <input type="hidden" name="from" value="<?= $_GET['from'] ?? null ?>"> 
         </form>
             <?= $links ?>
 </body>
