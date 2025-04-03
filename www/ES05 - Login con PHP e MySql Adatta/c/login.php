@@ -38,7 +38,7 @@ else if ($_SESSION['REQUEST_METHOD'] == 'POST') {
 <body>
         <h2>Login</h2>
 
-        <?= $msg ?>
+        <?= $mess ?>
 
         <form action="<?= $_SERVER['PHP_SELF']; ?>" method="POST">
             
