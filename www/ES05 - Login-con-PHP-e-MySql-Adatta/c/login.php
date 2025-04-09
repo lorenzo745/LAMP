@@ -14,6 +14,7 @@ echo "REQUEST_METHOD = ". $_SERVER['REQUEST_METHOD'] . "<br>";
 if (isset($_SESSION['utente'])) {
     echo "Utente già loggato";
     $mess = 'Accesso gia effettuato';
+    header('Location: index.php');
 
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $utente = $_POST['utente'];
@@ -26,14 +27,17 @@ if (isset($_SESSION['utente'])) {
 
     $mess = $Accessomsg;
 
-    if ($Accessoretval) {
+    if ($Accessomsg) {
         $_SESSION['utente'] = $utente;
-        
-        $link = 'Location: ';
-        $link .= $_POST['from'] != null ? $_POST['from'] : 'index.php';
+        echo "$utente";
 
-        header($link);
-        exit;
+        $coll = 'Location: index.php';
+        //header('Location: index.php');
+        $coll .= $_POST['from'] != null ? $_POST['from'] : 'index.php';
+
+        //header($coll);
+        die();
+        echo "$utente";
     }
     $collegamento= impostaCollegamento();
 } 

@@ -15,7 +15,7 @@ function controllosessione()
 }  
 
 
-function controllo_login()  
+function controllo_login($username,$password)  
 { 
     $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
@@ -31,26 +31,26 @@ function controllo_login()
 
     // Verifica se la query ha restituito risultati
     if (mysqli_num_rows($result) > 0) {
-        echo "Login riuscito. Benvenuto!"; // L'utente è autenticato con successo
+        return [true,'login effettuato con successo'];
     } else {
-        echo "Credenziali non valide. Riprova."; // L'utente non è autenticato
+        return [false,'login non effettuato con successo'];
     }
 
     // Chiudi la connessione al database
     mysqli_close($conn);
 }
 
-function logout()
+function uscita()
 {
     session_start();
     session_destroy();
-    header("Location: login.php");
+    header("Location: index.php");
     die();
 }
 
 function impostaCollegamento(){ 
     if(controllosessione()[0]){
-        $collegamento= "<a href='logout.php'>logout</a>";
+        $collegamento= "<a href='uscita.php'>uscita</a>";
         } else {
         $collegamento = "<a href='login.php'>login</a>";
     }
