@@ -23,7 +23,10 @@ function controllo_login()
         die("Attenzione! Connessione al database fallita." . mysqli_connect_error());
     }
 
-    $query = "SELECT * FROM account WHERE username = '$username' AND password = '$password'";
+    $username = $_POST['utente'];
+    $password = $_POST['password'];
+
+    $query = "SELECT * FROM account WHERE username = '" . $username . "' AND password = '" . $password . "'";
     $result = mysqli_query($conn, $query);
 
     // Verifica se la query ha restituito risultati
@@ -46,7 +49,7 @@ function logout()
 }
 
 function impostaCollegamento(){ 
-    if(checksession()[0]){
+    if(controllosessione()[0]){
         $collegamento= "<a href='logout.php'>logout</a>";
         } else {
         $collegamento = "<a href='login.php'>login</a>";

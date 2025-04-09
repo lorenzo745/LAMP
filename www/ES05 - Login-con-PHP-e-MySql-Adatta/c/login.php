@@ -16,7 +16,6 @@ if (isset($_SESSION['utente'])) {
     $mess = 'Accesso gia effettuato';
 
 } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo "Utente non ancora registrato ";
     $utente = $_POST['utente'];
     $password = $_POST['password'];
     //echo $utente;
@@ -37,12 +36,7 @@ if (isset($_SESSION['utente'])) {
         exit;
     }
     $collegamento= impostaCollegamento();
-
-} else {
-   echo "Condizione altrernativa<br>";
-}
-
-echo "Fine controlli";
+} 
 ?>
 
 
