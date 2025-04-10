@@ -26,7 +26,7 @@ function controllo_login($username,$password)
     $username = $_POST['utente'];
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM account WHERE username = '" . $username . "' AND password = '" . $password . "'";
+    $query = "SELECT * FROM account WHERE username = '$username' AND password = '$password'";
     $result = mysqli_query($conn, $query);
 
     // Verifica se la query ha restituito risultati

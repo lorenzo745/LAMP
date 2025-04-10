@@ -38,8 +38,10 @@ if (isset($_SESSION['utente'])) {
         //header($coll);
         die();
         echo "$utente";
+
     }
     $collegamento= impostaCollegamento();
+    echo "$collegamento";
 } 
 ?>
 
