@@ -23,20 +23,22 @@ function controllo_login($username,$password)
         die("Attenzione! Connessione al database fallita." . mysqli_connect_error());
     }
 
-    $username = $_POST['utente'];
-    $password = $_POST['password'];
-
-    $query = "SELECT * FROM account WHERE username = '$username' AND password = '$password'";
+    $query = "SELECT id FROM account WHERE username = '$username' AND password = '$password'";
     $result = mysqli_query($conn, $query);
 
     // Verifica se la query ha restituito risultati
-    if (mysqli_num_rows($result) > 0) {
-        return [true,'login effettuato con successo'];
+    if ($result) {
+        // Controllo se ci sono record
+        if (mysqli_num_rows($result) > 0) {
+            return [true, 'Login eseguito con successo'];
+        } else {
+            return [false, 'Login non eseguito con successo'];
+        }
     } else {
-        return [false,'login non effettuato con successo'];
+        return [false, 'Errore: ' . mysqli_error($conn)];
     }
 
-    // Chiudi la connessione al database
+    // Chiusura della connessione
     mysqli_close($conn);
 }
 

@@ -27,21 +27,15 @@ if (isset($_SESSION['utente'])) {
 
     $mess = $Accessomsg;
 
-    if ($Accessomsg) {
+    if ($Accessoretval) {
         $_SESSION['utente'] = $utente;
-        echo "$utente";
 
-        $coll = 'Location: index.php';
-        //header('Location: index.php');
+        $coll = 'Location: ';
         $coll .= $_POST['from'] != null ? $_POST['from'] : 'index.php';
-
-        //header($coll);
+        header($coll);
         die();
-        echo "$utente";
-
     }
-    $collegamento= impostaCollegamento();
-    echo "$collegamento";
+        
 } 
 ?>
 
@@ -54,7 +48,7 @@ if (isset($_SESSION['utente'])) {
 <body>
         <h2>Login</h2>
 
-        <?= $mess ?>
+        <h3 style= color:red><?= $mess ?>
 
         <form action="<?= $_SERVER['PHP_SELF']; ?>" method="POST">
             

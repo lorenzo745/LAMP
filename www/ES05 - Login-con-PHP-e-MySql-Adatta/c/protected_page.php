@@ -22,7 +22,7 @@
 
     <a href="index.php">Home page</a>
     <br>
-    <a href="uscita.php">uscita</a>
+    <a href="uscita.php">Uscita</a>
 </body>
 </html>
 
