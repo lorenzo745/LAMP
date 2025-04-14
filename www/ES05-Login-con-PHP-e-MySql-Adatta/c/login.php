@@ -3,14 +3,7 @@
 require 'funzioni.php';
 
 session_start();
-/*
-$utente = $_POST['utente'];
-$password = $_POST['password'];
-echo "Nome utente = $utente<br>";
-echo "Password = $password<br>";
-echo "Sessione utente = ". $_SESSION['utente'] . "<br>";
-echo "REQUEST_METHOD = ". $_SERVER['REQUEST_METHOD'] . "<br>";
-*/
+
 if (isset($_SESSION['utente'])) {
     echo "Utente già loggato";
     $mess = 'Accesso gia effettuato';
