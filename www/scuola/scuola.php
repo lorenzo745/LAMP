@@ -1,8 +1,8 @@
 <?php 
 
 define('DB_SERVER', 'localhost');
-define('DB_USERNAME', '');
-define('DB_PASSWORD', '');
+define('DB_USERNAME', 'ES05_user');
+define('DB_PASSWORD', 'mia_password');
 define('DB_NAME', 'scuola');
 
 $conn = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
@@ -20,8 +20,6 @@ while ($riga= mysqli_fetch_assoc($result)) {
     }
 
 }
-
-
-// Stampa i risultati
+?>
 
 
